@@ -5,10 +5,13 @@ import './MyNav.css';
 import ReactStars from "react-rating-stars-component";
 
 
-const MyNav = () => {
+const MyNav = ({handleTitle ,handleRate}) => {
   const ratingChanged = (newRating) => {
-    console.log(newRating);
+    handleRate(newRating);
   };
+  const handleChange=(e)=>{
+    handleTitle(e.target.value)
+  }
   
   return (
     <div>
@@ -20,7 +23,7 @@ const MyNav = () => {
          <Nav.Link href="#features">Features</Nav.Link>
           <Nav.Link href="#pricing">Pricing</Nav.Link>
         </Nav>
-        <input type="text" placeholder='Enter your search' className='my-input' />
+        <input type="text" placeholder='Enter your search' className='my-input' onChange={handleChange} />
         <ReactStars
           count={5}
           onChange={ratingChanged}
